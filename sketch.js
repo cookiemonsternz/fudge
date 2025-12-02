@@ -11,6 +11,7 @@ var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 
 Composite.add(engine.world, [boxA, boxB, ground]);
 
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(144);
@@ -18,7 +19,7 @@ function setup() {
 
 function draw() {
   background(1);
-  Engine.update(engine, 1000 / frameRate());
+  Engine.update(engine, 1000 / 144);
   var bodies = Composite.allBodies(engine.world);
 
   for (var i = 0; i < bodies.length; i++) {
