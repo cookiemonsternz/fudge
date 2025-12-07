@@ -6,7 +6,7 @@ Object.assign(window, NEATJavaScript);
 // Create a new instance of Config
 const config = new Config({
     // Basic network structure
-    inputSize: 4, // Number of input nodes (dist to other slime, dir to other slime, dist to mouse, dir to mouse)
+    inputSize: 6, // Number of input nodes (dist to other slime, dir to other slime, dist to mouse, dir to mouse)
     outputSize: 2, // Number of output nodes (jump, dir)
 
     // Activation function (string-based selection)
@@ -42,7 +42,7 @@ const config = new Config({
     maxPerturb: 0.7, // Maximum perturbation value
 
     // Evolution parameters
-    populationSize: 150, // Size of the population
+    populationSize: 16, // Size of the population
     generations: 5000, // Number of generations
     targetFitness: 250, // Target fitness to achieve
     survivalRate: 0.1, // Proportion that survives each generation
@@ -77,7 +77,7 @@ class Slime {
 }
 
 function createSlimeBody(x, y) {
-    var body = Bodies.circle(x, y, 10);
+    var body = Bodies.circle(x, y, 60);
     Composite.add(engine.world, body);
     return body;
 }
@@ -125,7 +125,7 @@ let currentGen = 0;
 function draw() {
     t += 1
     background(1);
-    Engine.update(engine, 1000 / 60);
+    Engine.update(engine, 1000 / 90);
 
     var targetPos = createVector(sin(frameCount * 0.005)*300 + width / 2, cos(frameCount * 0.007)*100 + height / 2)
     fill(32, 128, 64);
@@ -144,12 +144,12 @@ function draw() {
         var mouse_x_dir = (body.position.x < targetPos.x) ? 1.0 : -1.0;
         var mouse_y_dir = (body.position.y < targetPos.y) ? 1.0 : -1.0;
         var can_jump = (slime.jumpTime > 60) ? 1.0 : 0.0
-        var outputs = genome.propagate([can_jump, mouse_dist / 1000.0, mouse_x_dir, mouse_y_dir])
+        var outputs = genome.propagate([nearest_dist / 100.0, nearest_direction, can_jump, mouse_dist / 1000.0, mouse_x_dir, mouse_y_dir])
         var doJump = outputs[0];
         var dir = outputs[1];
 
         if (doJump > 0 && slime.jumpTime > 60) {
-            Body.applyForce(body, body.position, Vector.create(dir*0.0045, -0.02));
+            Body.applyForce(body, body.position, Vector.create(dir*0.25, -0.8));
             slime.jumpTime = 0;
         }
 
@@ -160,9 +160,9 @@ function draw() {
         var dist_to_wall = min(posX, width - posX, posY, height - posY);
         dist_to_wall = max(dist_to_wall, 1.0);
 
-        genome.fitness -= 10.0 / dist_to_wall;
+        genome.fitness -= 20.0 / dist_to_wall;
         genome.fitness += 15.0 / (mouse_dist+0.01);
-        genome.fitness -= 1.0 / (nearest_dist+0.01);
+        genome.fitness -= 10.0 / (nearest_dist+0.01);
 
         fill(255 / (genome.fitness* 0.01), 0, 0);
         circle(posX, posY, 12);
@@ -200,3 +200,32 @@ function draw() {
         currentGen += 1;
     }
 }
+
+// Source - https://stackoverflow.com/a/30832210
+// Posted by Kanchu, modified by community. See post 'Timeline' for change history
+// Retrieved 2025-12-07, License - CC BY-SA 3.0
+
+// Function to download data to a file
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
+
+function saveGenome() {
+    download(population.getBestGenome().toJSON(), "bestGenome.json", "json")
+}
+
+document.querySelector("#save").addEventListener("click", saveGenome);

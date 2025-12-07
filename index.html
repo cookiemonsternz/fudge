@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +12,34 @@
     <script src="libraries/p5.sound.min.js"></script>
   </head>
 
-  <body>
+  <body style="height: 100%;">
+    <a id="src-code" href="https://github.com/cookiemonsternz/fudge">
+      <img src="./source_icon.png">
+    </a>
+    <div class="content">
+      <h1 class="main-title">slime</h1>
+      <div class="lore-container">
+        <p>These slimes have spent hundreds (if not thousands) of hours training to acquire <b>fudge</b> at all costs.</p>
+        <p>While it may seem tempting to let them have it, <b>be warned!</b> You will lose any and all chance at receiving fudge yourself.</p>
+      </div>
+      <button id="start-button"><p>Begin!</p></button>
+      <button id="harder-button"><p>HARDER >:)</p></button>
+    </div>
+    <div class="loss-screen">
+      <h1 class="main-title">Soz u lost</h1>
+      <div class="lore-container">
+        <p>I've got some bad news sorry</p>
+        <p>one of those slimes got your fudge and now you won't get any :(</p>
+        <p>i did warn you</p>
+        <p>maybe if you try again you can get it back?</p>
+      </div>
+      <button id="retry-button"><p>retry</p></button>
+    </div>
+    
+    <canvas id="canvas"></canvas>
+
     <script src="matter.js"></script>
+    <script src="https://neat-javascript.org/releases/NEAT-JavaScript-1.0.1.js"></script>
     <script src="sketch.js"></script>
   </body>
 </html>

@@ -1,8 +1,79 @@
 html, body {
   margin: 0;
   padding: 0;
+  cursor: none;
 }
 
 canvas {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.lore-container {
+  align-self: center;
+  background-color: rgba(127, 255, 212, 0.75);
+  padding: 1rem;
+  
+}
+
+.content {
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive;
+  background-color: rgba(128, 128, 128, 0.212);
+}
+
+.loss-screen {
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive;
+  display: none;
+  background-color: rgba(128, 128, 128, 0.212);
+}
+
+.main-title {
+  margin: 0;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(255, 228, 196, 0.75);
+}
+
+#start-button {
+  margin-top: 1rem;
+  font-family: inherit;
+  font-size: x-large;
+  background-color: rgba(210, 30, 180, 0.75);
+}
+
+#harder-button {
+  margin-top: 1rem;
+  font-family: inherit;
+  font-size: x-large;
+  background-color: rgba(210, 30, 30, 0.75);
+}
+
+#retry-button {
+  margin-top: 1rem;
+  font-family: inherit;
+  font-size: x-large;
+  background-color: rgba(66, 210, 30, 0.75);
+}
+
+#src-code {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  scale: 0.5;
 }
