@@ -1,5 +1,5 @@
 var genome = `{
-  "id": 99,
+  "id": 1370,
   "nodeGenes": [
     {
       "id": 0,
@@ -36,6 +36,14 @@ var genome = `{
     {
       "id": 8,
       "type": "BIAS"
+    },
+    {
+      "id": 9,
+      "type": "HIDDEN"
+    },
+    {
+      "id": 22,
+      "type": "HIDDEN"
     }
   ],
   "connectionGenes": [
@@ -44,7 +52,7 @@ var genome = `{
       "inNodeId": 0,
       "outNodeId": 6,
       "enabled": true,
-      "weight": 1.0409320397773252,
+      "weight": 4.539478174642101,
       "recurrent": false
     },
     {
@@ -52,15 +60,15 @@ var genome = `{
       "inNodeId": 0,
       "outNodeId": 7,
       "enabled": true,
-      "weight": -0.29916062431889223,
+      "weight": 2.935398511628484,
       "recurrent": false
     },
     {
       "innovationNumber": 2,
       "inNodeId": 1,
       "outNodeId": 6,
-      "enabled": true,
-      "weight": -1.6920239235511247,
+      "enabled": false,
+      "weight": 4.638958917354696,
       "recurrent": false
     },
     {
@@ -68,7 +76,7 @@ var genome = `{
       "inNodeId": 1,
       "outNodeId": 7,
       "enabled": true,
-      "weight": 4.079569358789159,
+      "weight": 0.19749067646321128,
       "recurrent": false
     },
     {
@@ -76,7 +84,7 @@ var genome = `{
       "inNodeId": 2,
       "outNodeId": 6,
       "enabled": true,
-      "weight": -4.149231666476734,
+      "weight": -4.061751324961411,
       "recurrent": false
     },
     {
@@ -84,7 +92,7 @@ var genome = `{
       "inNodeId": 2,
       "outNodeId": 7,
       "enabled": true,
-      "weight": 1.853977769313059,
+      "weight": -3.417532594548078,
       "recurrent": false
     },
     {
@@ -92,7 +100,7 @@ var genome = `{
       "inNodeId": 3,
       "outNodeId": 6,
       "enabled": true,
-      "weight": 4.11876985474351,
+      "weight": 3.4369067999691256,
       "recurrent": false
     },
     {
@@ -100,7 +108,7 @@ var genome = `{
       "inNodeId": 3,
       "outNodeId": 7,
       "enabled": true,
-      "weight": -2.609654046361954,
+      "weight": -0.8063877894037327,
       "recurrent": false
     },
     {
@@ -108,7 +116,7 @@ var genome = `{
       "inNodeId": 4,
       "outNodeId": 6,
       "enabled": true,
-      "weight": 2.2733375989993014,
+      "weight": 3.852016737843686,
       "recurrent": false
     },
     {
@@ -116,7 +124,7 @@ var genome = `{
       "inNodeId": 4,
       "outNodeId": 7,
       "enabled": true,
-      "weight": 1.6167334839602014,
+      "weight": 6.792661604924676,
       "recurrent": false
     },
     {
@@ -124,7 +132,7 @@ var genome = `{
       "inNodeId": 5,
       "outNodeId": 6,
       "enabled": true,
-      "weight": -4.912464637956905,
+      "weight": -3.776143802804209,
       "recurrent": false
     },
     {
@@ -132,7 +140,7 @@ var genome = `{
       "inNodeId": 5,
       "outNodeId": 7,
       "enabled": true,
-      "weight": -1.7734173003763347,
+      "weight": 1.9361385232832533,
       "recurrent": false
     },
     {
@@ -140,19 +148,59 @@ var genome = `{
       "inNodeId": 8,
       "outNodeId": 6,
       "enabled": true,
-      "weight": 1.6784944090773943,
+      "weight": 2.5492526575767807,
       "recurrent": false
     },
     {
       "innovationNumber": 13,
       "inNodeId": 8,
       "outNodeId": 7,
+      "enabled": false,
+      "weight": 1.6395872242739018,
+      "recurrent": false
+    },
+    {
+      "innovationNumber": 14,
+      "inNodeId": 1,
+      "outNodeId": 9,
       "enabled": true,
-      "weight": -2.112440073447257,
+      "weight": -2.1199478000630663,
+      "recurrent": false
+    },
+    {
+      "innovationNumber": 15,
+      "inNodeId": 9,
+      "outNodeId": 6,
+      "enabled": true,
+      "weight": -5.000578480893302,
+      "recurrent": false
+    },
+    {
+      "innovationNumber": 23,
+      "inNodeId": 5,
+      "outNodeId": 9,
+      "enabled": true,
+      "weight": 3.304622649142872,
+      "recurrent": false
+    },
+    {
+      "innovationNumber": 81,
+      "inNodeId": 8,
+      "outNodeId": 22,
+      "enabled": true,
+      "weight": 1.004560771588587,
+      "recurrent": false
+    },
+    {
+      "innovationNumber": 82,
+      "inNodeId": 22,
+      "outNodeId": 7,
+      "enabled": true,
+      "weight": 3.206619744462464,
       "recurrent": false
     }
   ],
-  "fitness": 4.527675380694038,
+  "fitness": 5.685707438310252,
   "populationId": 0
 }`
 
