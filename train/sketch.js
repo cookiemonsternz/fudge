@@ -6,7 +6,7 @@ Object.assign(window, NEATJavaScript);
 // Create a new instance of Config
 const config = new Config({
     // Basic network structure
-    inputSize: 6, // Number of input nodes (dist to other slime, dir to other slime, dist to mouse, dir to mouse)
+    inputSize: 4, // Number of input nodes (dist to other slime, dir to other slime, dist to mouse, dir to mouse)
     outputSize: 2, // Number of output nodes (jump, dir)
 
     // Activation function (string-based selection)
@@ -144,7 +144,7 @@ function draw() {
         var mouse_x_dir = (body.position.x < targetPos.x) ? 1.0 : -1.0;
         var mouse_y_dir = (body.position.y < targetPos.y) ? 1.0 : -1.0;
         var can_jump = (slime.jumpTime > 60) ? 1.0 : 0.0
-        var outputs = genome.propagate([nearest_dist / 100.0, nearest_direction, can_jump, mouse_dist / 1000.0, mouse_x_dir, mouse_y_dir])
+        var outputs = genome.propagate([can_jump, mouse_dist / 1000.0, mouse_x_dir, mouse_y_dir])
         var doJump = outputs[0];
         var dir = outputs[1];
 

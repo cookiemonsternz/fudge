@@ -291,6 +291,7 @@ class Slime {
 
 function createSlimeBody(x, y) {
     var body = Bodies.circle(x, y, 60);
+    body.angle = Math.random() / 10 - 0.05
     Composite.add(engine.world, body);
     return body;
 }
@@ -306,10 +307,10 @@ function isInArea(x, y) {
 
 
 function preload() {
-  slime_wings_down = loadImage("./wings_down.png");
-  slime_wings_up = loadImage("./wings_up.png");
-  fudge_img = loadImage("./fudge.png");
-  bgimg = loadImage("./background.png")
+  slime_wings_down = loadImage("wings_down.png");
+  slime_wings_up = loadImage("wings_up.png");
+  fudge_img = loadImage("fudge.png");
+  bgimg = loadImage("background.png")
 }
 
 var canvasElement = document.querySelector("#canvas");
@@ -379,14 +380,21 @@ function draw() {
 
         if (doJump > 0 && slime.jumpTime > 60) {
             Body.applyForce(body, body.position, Vector.create(dir*0.25, -0.8));
+            Body.setAngularVelocity(body, body.angle > 0 ? -0.02 : 0.02)
             slime.jumpTime = 0;
             slime.flapped = 32;
         }
+
+        // console.log(body.angle)
+        push()
+        translate(body.position.x, body.position.y);
+        rotate(body.angle);
         if (slime.flapped > 0 && slime.flapped < 20) {
-          image(slime_wings_down, body.position.x - 64, body.position.y - 64, 128, 128)
+          image(slime_wings_down, -64, -64, 128, 128)
         } else {
-          image(slime_wings_up, body.position.x - 64, body.position.y - 64, 128, 128)
+          image(slime_wings_up, -64, -64, 128, 128)
         }
+        pop()
         slime.flapped--;
         
         if (isInArea(body.position.x, body.position.y) && started) {
@@ -397,16 +405,16 @@ function draw() {
         }
     }
 
-    var bodies = Composite.allBodies(engine.world);
-    for (var i = 0; i < bodies.length; i++) {
-        if (bodies[i].circleRadius == null) {
-            beginShape(QUADS);
-            for (var j = 0; j < bodies[i].vertices.length; j++) {
-                vertex(bodies[i].vertices[j].x, bodies[i].vertices[j].y);
-            }
-            endShape();
-        }
-    }
+    // var bodies = Composite.allBodies(engine.world);
+    // for (var i = 0; i < bodies.length; i++) {
+    //     if (bodies[i].circleRadius == null) {
+    //         beginShape(QUADS);
+    //         for (var j = 0; j < bodies[i].vertices.length; j++) {
+    //             vertex(bodies[i].vertices[j].x, bodies[i].vertices[j].y);
+    //         }
+    //         endShape();
+    //     }
+    // }
 }
 
 function start() {
