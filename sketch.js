@@ -380,7 +380,7 @@ function draw() {
         // circle(body.position.x, body.position.y, body.circleRadius * 2)
 
         if (doJump > 0 && slime.jumpTime > 60) {
-            // var forceMult = min(max(delta, 0.1), 10)
+            var forceMult = min(max(1 / delta, 0.1), 10)
             var forceMult = 1
             Body.applyForce(body, body.position, Vector.create(dir*0.25 * forceMult, -0.8 * forceMult));
             Body.setAngularVelocity(body, body.angle > 0 ? -0.02 : 0.02)
