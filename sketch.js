@@ -353,7 +353,7 @@ let currentGen = 0;
 function draw() {
     t += 1
     image(bgimg, 0, 0, width, height)
-    Engine.update(engine, 1000 / speed);
+    Engine.update(engine, 1000 / frameRate() * (speed / 144));
 
     var targetPos = createVector(mouseX, mouseY)
     fill(32, 128, 64);
