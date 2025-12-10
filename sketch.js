@@ -351,9 +351,10 @@ var speed = 200;
 var t = 0
 let currentGen = 0;
 function draw() {
-    t += 1
+    var delta = speed / frameRate();
+    t += delta
     image(bgimg, 0, 0, width, height)
-    Engine.update(engine, 1000 / frameRate() * (speed / 144));
+    Engine.update(engine, 1000 / max(frameRate(), 30) * (144 / speed));
 
     var targetPos = createVector(mouseX, mouseY)
     fill(32, 128, 64);
@@ -379,7 +380,9 @@ function draw() {
         // circle(body.position.x, body.position.y, body.circleRadius * 2)
 
         if (doJump > 0 && slime.jumpTime > 60) {
-            Body.applyForce(body, body.position, Vector.create(dir*0.25, -0.8));
+            // var forceMult = min(max(delta, 0.1), 10)
+            var forceMult = 1
+            Body.applyForce(body, body.position, Vector.create(dir*0.25 * forceMult, -0.8 * forceMult));
             Body.setAngularVelocity(body, body.angle > 0 ? -0.02 : 0.02)
             slime.jumpTime = 0;
             slime.flapped = 32;
@@ -395,7 +398,7 @@ function draw() {
           image(slime_wings_up, -64, -64, 128, 128)
         }
         pop()
-        slime.flapped--;
+        slime.flapped -= delta;
         
         if (isInArea(body.position.x, body.position.y) && started) {
           console.log("LOSS")
